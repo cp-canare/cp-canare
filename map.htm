@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    *
+    {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div style='position: relative; height: calc(100vh - 16px); width: 100%;'>
+    <input type="button" value="Wilcon D1 - Alabang Depot" onclick="remove_L_marker(); _map.flyTo(L.marker([14.4277307, 121.0205026]).bindPopup(`<b>Wilcon D1 - Alabang Depot</b>`).addTo(_map).openPopup().getLatLng(), 16);" />
+    <input type="button" value="Wilcon D2 - Balintawak Depot" onclick="remove_L_marker(); _map.flyTo(L.marker([14.6584794, 121.0099012]).bindPopup(`<b>Wilcon D2 - Balintawak Depot</b>`).addTo(_map).openPopup().getLatLng(), 16); ;" />
+    <link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.3/dist/leaflet.css' />
+    <script src='https://unpkg.com/leaflet@1.9.3/dist/leaflet.js'></script>
+    <div id='LeafletJs' style='width: 100%; height: calc(100% - 16px);'>
+    </div>
+    <script>
+      /* https://leafletjs.com/examples/quick-start/ */
+      const _osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 16 });
+      const _map = L.map('LeafletJs', {
+        layers: [_osm],
+        center: [14.2774079, 120.931171],
+        zoom: 8,
+        attributionControl: false,
+        zoomControl: false,
+      });
+      /*const _layerControl = L.control.layers({'OpenStreetMap': _osm}).addTo(_map);*/
+
+      setTimeout(function(){ _map.invalidateSize(); }, 500);
+
+      function remove_L_marker() {
+        for (_i in _map._layers) {
+          if(_map._layers[_i]._latlng) {
+            _map._layers[_i].remove(); /* REMOVE ALL L.marker */
+          }
+        }
+      }
+    </script>
+  </div>
+</body>
+</html>
